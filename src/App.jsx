@@ -78,6 +78,21 @@ const App = () => {
     }
   }
 
+  const addLike = async (likedBlog) => {
+    try {
+      await blogService.addLike(likedBlog)
+      setMessage({ text: `Blog "${likedBlog.title}" liked`, type: 'success'})
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    } catch (exception) {
+      setMessage({ text: 'Liking a blog failed.', type: 'error'})
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    }
+  }
+
   const loginForm = () => {
     const loginHidden = { display: loginVisible ? 'none' : '' }
     const loginShown = { display: loginVisible ? '' : 'none' }
@@ -127,7 +142,7 @@ const App = () => {
         <br></br>
 
         {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} />
+          <Blog key={blog.id} blog={blog} addLike={addLike} />
         )}
         <br></br>
         <button onClick={handleLogout}>Logout</button>
