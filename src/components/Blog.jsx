@@ -12,7 +12,7 @@ const Blog = ({ blog, addLike, user, deleteBlog }) => {
   const [detailsVisible, setDetailsVisible] = useState(false)
   const detailsHidden = { display: detailsVisible ? 'none' : '' }
   const detailsShown = { display: detailsVisible ? '' : 'none' }
-  const usersBlog = user.username === blog.user.username
+  const usersBlog = user.id === blog.user.id || user.id === blog.user
   const deleteShown = { display: usersBlog ? '' : 'none'}
 
   const likeBlog = () => {
