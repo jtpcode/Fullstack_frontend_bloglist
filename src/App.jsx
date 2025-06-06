@@ -78,6 +78,22 @@ const App = () => {
     }
   }
 
+  const deleteBlog = async (blog) => {
+    try {
+      await blogService.deleteBlog(blog.id)
+      setBlogs(blogs.filter(b => b.id !== blog.id))
+      setMessage({ text: `Blog "${blog.title}" deleted.`, type: 'success'})
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    } catch (exception) {
+      setMessage({ text: 'Deleting blog failed.', type: 'error'})
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    }
+  }
+
   const addLike = async (likedBlog) => {
     try {
       await blogService.addLike(likedBlog)
@@ -139,12 +155,19 @@ const App = () => {
             addBlog={addBlog}
           />
         </Togglable>
-        <br></br>
-
-        {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} addLike={addLike} />
-        )}
-        <br></br>
+        <br />
+        {[...blogs]
+          .sort((a, b) => b.likes - a.likes)
+          .map(blog => (
+            <Blog
+              key={blog.id}
+              blog={blog}
+              addLike={addLike}
+              user={user}
+              deleteBlog={deleteBlog}
+            />
+        ))}
+        <br />
         <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
