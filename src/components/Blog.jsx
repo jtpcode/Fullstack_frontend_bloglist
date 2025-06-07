@@ -13,7 +13,7 @@ const Blog = ({ blog, addLike, user, deleteBlog }) => {
   const detailsHidden = { display: detailsVisible ? 'none' : '' }
   const detailsShown = { display: detailsVisible ? '' : 'none' }
   const usersBlog = user.id === blog.user.id || user.id === blog.user
-  const deleteShown = { display: usersBlog ? '' : 'none'}
+  const deleteShown = { display: usersBlog ? '' : 'none' }
 
   const likeBlog = () => {
     blog.likes += 1
@@ -44,6 +44,6 @@ const Blog = ({ blog, addLike, user, deleteBlog }) => {
         <button style={deleteShown} onClick={removeBlog}>Delete</button>
       </div>
     </div>
-)}
+  )}
 
 export default Blog

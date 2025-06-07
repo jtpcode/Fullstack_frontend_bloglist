@@ -10,7 +10,7 @@ import Togglable from './components/Togglable'
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [Message, setMessage] = useState(null)
-  const [username, setUsername] = useState('') 
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [loginVisible, setLoginVisible] = useState(false)
@@ -48,7 +48,7 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setMessage({ text: 'Wrong credentials.', type: 'error'})
+      setMessage({ text: 'Wrong credentials.', type: 'error' })
       setTimeout(() => {
         setMessage(null)
       }, 5000)
@@ -66,12 +66,12 @@ const App = () => {
       blogFormRef.current.toggleVisibility()
       const returnedBlog = await blogService.create(newBlog)
       setBlogs(blogs.concat(returnedBlog))
-      setMessage({ text: `New blog "${newBlog.title}" added`, type: 'success'})
+      setMessage({ text: `New blog "${newBlog.title}" added`, type: 'success' })
       setTimeout(() => {
         setMessage(null)
       }, 5000)
     } catch (exception) {
-      setMessage({ text: 'Creating blog failed.', type: 'error'})
+      setMessage({ text: 'Creating blog failed.', type: 'error' })
       setTimeout(() => {
         setMessage(null)
       }, 5000)
@@ -82,12 +82,12 @@ const App = () => {
     try {
       await blogService.deleteBlog(blog.id)
       setBlogs(blogs.filter(b => b.id !== blog.id))
-      setMessage({ text: `Blog "${blog.title}" deleted.`, type: 'success'})
+      setMessage({ text: `Blog "${blog.title}" deleted.`, type: 'success' })
       setTimeout(() => {
         setMessage(null)
       }, 5000)
     } catch (exception) {
-      setMessage({ text: 'Deleting blog failed.', type: 'error'})
+      setMessage({ text: 'Deleting blog failed.', type: 'error' })
       setTimeout(() => {
         setMessage(null)
       }, 5000)
@@ -97,12 +97,12 @@ const App = () => {
   const addLike = async (likedBlog) => {
     try {
       await blogService.addLike(likedBlog)
-      setMessage({ text: `Blog "${likedBlog.title}" liked`, type: 'success'})
+      setMessage({ text: `Blog "${likedBlog.title}" liked`, type: 'success' })
       setTimeout(() => {
         setMessage(null)
       }, 5000)
     } catch (exception) {
-      setMessage({ text: 'Liking a blog failed.', type: 'error'})
+      setMessage({ text: 'Liking a blog failed.', type: 'error' })
       setTimeout(() => {
         setMessage(null)
       }, 5000)
@@ -146,12 +146,12 @@ const App = () => {
     <div>
       <h2>Blogs</h2>
       <Notification message={Message} />
-      
+
       <div>
         <p>{user.name} logged in</p>
         <h2>Create a new blog</h2>
         <Togglable buttonLabel='New blog' ref={blogFormRef}>
-          <BlogForm 
+          <BlogForm
             addBlog={addBlog}
           />
         </Togglable>
@@ -166,7 +166,7 @@ const App = () => {
               user={user}
               deleteBlog={deleteBlog}
             />
-        ))}
+          ))}
         <br />
         <button onClick={handleLogout}>Logout</button>
       </div>
