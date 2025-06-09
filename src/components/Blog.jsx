@@ -29,19 +29,20 @@ const Blog = ({ blog, addLike, user, deleteBlog }) => {
 
   return (
     <div>
-      <div style={{ ...blogStyle, ...detailsHidden }}>
-        {blog.title}{' '}
-        <button onClick={() => setDetailsVisible(true)}>View</button>
-      </div>
-      <div style={{ ...blogStyle, ...detailsShown }}>
-        <div>{blog.title}</div>
-        <div>{blog.url}</div>
-        <div>{blog.likes} likes</div>
-        <div>{blog.author}</div>
-        <button onClick={() => setDetailsVisible(false)}>Hide</button>
-        {' '}
-        <button onClick={likeBlog}>Like</button>
-        <button style={deleteShown} onClick={removeBlog}>Delete</button>
+      <div style={{ ...blogStyle }}>
+        {blog.title}
+        <div style={ detailsHidden } className="title">
+          <button onClick={() => setDetailsVisible(true)}>View</button>
+        </div>
+        <div style={ detailsShown } className="details">
+          <div>{blog.url}</div>
+          <div>{blog.likes} likes</div>
+          <div>{blog.author}</div>
+          <button onClick={() => setDetailsVisible(false)}>Hide</button>
+          {' '}
+          <button onClick={likeBlog}>Like</button>
+          <button style={deleteShown} onClick={removeBlog}>Delete</button>
+        </div>
       </div>
     </div>
   )}
