@@ -82,7 +82,7 @@ const App = () => {
     try {
       await blogService.deleteBlog(blog.id)
       setBlogs(blogs.filter(b => b.id !== blog.id))
-      setMessage({ text: `Blog "${blog.title}" deleted.`, type: 'success' })
+      setMessage({ text: `Blog "${blog.title}" deleted`, type: 'success' })
       setTimeout(() => {
         setMessage(null)
       }, 5000)
